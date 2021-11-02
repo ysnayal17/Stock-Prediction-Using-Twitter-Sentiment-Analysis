@@ -1,0 +1,47 @@
+{% extends 'home/index.html' %}
+{% load static %}
+
+{% block link %}
+<link rel="stylesheet" href="{% static 'css/register.css' %}">
+{% endblock %}
+
+{% block title %}
+register
+{% endblock %}
+
+{% block body %}
+<form action="register" method="post">
+    {% csrf_token %}
+    <div class="container">
+        <div class="heading">
+            <h3>Register</h3>
+        </div>
+        <div class="fields">
+            <label for="usenname">Username</label>
+            <input type="text" name="username">
+        </div>
+        <div class="fields">
+            <label for="fname">First Name</label>
+            <input type="text" name="fname">
+        </div>
+        <div class="fields">
+            <label for="lname">Last Name</label>
+            <input type="text" name="lname">
+        </div>
+        <div class="fields">
+            <label for="email">Email</label>
+            <input type="email" name="email">
+        </div>
+        <div class="fields">
+            <label for="password">Password</label>
+            <input type="password" name="password">
+        </div>
+        <div class="fields">
+            <button type="submit" value="submit">Sign Up</button>
+        </div>
+        <div class="container-footer">
+            <p>Already Registered? <a href="{% url 'login' %}">Login</a> </p>
+        </div>
+    </div>
+</form>
+{% endblock %}

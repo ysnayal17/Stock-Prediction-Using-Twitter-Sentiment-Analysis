@@ -1,0 +1,140 @@
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/dashboard.css' %}">
+<link rel="stylesheet" href="{% static 'css/index.css' %}">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+<body style="background-color: #1e1c1c; color: white;">
+<div class="menu_ container-fluid">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="#">SPUTSA</a>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav ml-auto">
+        <li class="nav-item active">
+            <a class="nav-link" href="#">dashboard <span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="#">Logout</a>
+        </li>
+        </ul>
+        </div>
+    </nav>
+</div>
+<div class="graph_ row">
+    <div class="col">
+    <h1>{{ ticker }}</h1>
+    {% comment %}
+    {% endcomment %}
+    {% include 'dashboard/companyChart.html' with ticker=ticker %}
+    </div>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <table class="table table-dark">
+                <thead>
+                  <tr>
+                    <th scope="col">Today</th>
+                    <th scope="col">Open</th>
+                    <th scope="col">Cuurent</th>
+                    <th scope="col">High</th>
+                    <th scope="col">Low</th>
+                    <th scope="col" class="predtable">Predicted Close</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <th scope="row">-</th>
+                    <td>$ {{ prices.0 }}</td>
+                    <td>$ {{ prices.1 }}</td>
+                    <td>$ {{ prices.2 }}</td>
+                    <td>$ {{ prices.3 }}</td>
+                    <td class="predtable">$ {{ predClose }}</td>
+                  </tr>
+                </tbody>
+            </table>
+            <div class="btn-class btn btn-light btn-lg">
+                <a href="{% url 'retrain' %}" style="color: #07080a;">Retrain Model</a>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container model-pred-graph">
+    <div class="row">
+        <div class="col">
+            <div id="img3">
+                <h2>Our Model Predictions</h2>
+                <!-- <img src="data:image/png;base64,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" alt=""> -->    
+                {% include 'dashboard/file.html' %}
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container model-pred-pie">
+    <div class="row">
+        <div class="col">
+                <div id="img3">
+                    <h2>Today's twitter sentiments</h2>
+                    {% include 'dashboard/file_pie.html' %}
+                </div>
+        </div>
+    </div>
+</div>
+
+<section class="news">
+    <h2>News and Tweets</h2>
+    <div class="twitter">
+        <table>
+            <thead>Recent Tweet</thead>
+            <tbody>
+                <tr>
+                    <!-- <th>Username</th> -->
+                    <th>Tweet</th>
+                </tr>
+                {% for tweet in tweetObj %}
+                <tr>
+                    <!-- <td>{{ tweetObj }}</td> -->
+                    <td>
+                        {{ tweet.created_at }} {{ tweet.text }}
+                        {{ tweet.urls }}
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <div class="newspart">
+        <table>
+            <thead>Recent News</thead>
+            <tbody>
+                <tr>
+                    <th>Top Headlines</th>
+                </tr>
+                {% for news in newsObj %}
+                <tr>
+                    {{ news.article }}
+                    <td>
+                        <div class="card bg-dark" style="width: 28rem; margin: auto;">
+                            <img src="{{ news.articles.0.urlToImage }}" class="card-img-top" alt="...">
+                            <div class="card-body">
+                              <h5 class="card-title">{{ news.articles.0.title }}</h5>
+                              <h6 class="card-text">{{ news.articles.0.publishedAt }} - {{ news.articles.0.author }}</h6>
+                              <p class="card-text">{{ news.articles.0.description }}</p>
+                              <a href="{{ news.articles.0.url }}" target="_blank" class="btn btn-primary">Check Details</a>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</section>
+<footer class="container footer">
+    <h4>&copy; group 3 : Yogesh, Domingos, Vivek, Lian</h4>
+</footer>
+</body>

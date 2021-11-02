@@ -1,0 +1,101 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stock Market Prediction Using Twitter Sentiments</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <section class="header">
+    <nav>
+          <a href="/"><img src="{% static 'images/logo.png' %}"></a>
+        <div class="nav-links">
+            <ul>
+                {% if user.is_authenticated %}
+                <li><a href="/"> Welcome {{ request.user }}</a></li>
+                {% endif %}
+                <li><a href="">Home</a></li>
+                <li><a href="#About">About</a></li>
+                <li><a href="#Tutorial">Tutorial</a></li>
+                {% if user.is_anonymous %}
+                <li><a href="{% url 'login' %}">Login</a></li>
+                {% else %}
+                <li><a href="{% url 'logout' %}">Logout</a></li>
+                {% endif %}
+            </ul>
+        </div>
+
+    </nav>   
+    {% if messages %}
+    <ul class="messages" style="text-align: center;position: relative;bottom: 162px;">
+        {% for message in messages %}
+        <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+        {% endfor %}    
+    </ul>
+    {% endif %}
+    <div class="text-box">
+        <h1>Stock Market Prediction Using Twitter Sentiments</h1>
+        <p>Investing in Stock is now one of the most important thing in the world for people to increase their portfolios. Here we are to help you out in this process by helping you get relevant informations regarding stock market and give various analysis regarding various company stocks.</p>
+    </div>
+    <div class="add-ticker">
+        <form action="dashboard" method="POST">
+            {% csrf_token %}
+            <div class="ticker">
+                <input class="ticker-input" name="ticker" type="text" placeholder="stock exchange:ticker symbol">
+                <button class="ticker-input" type="submit">Predict</button>
+            </div>
+        </form>
+    </div>
+    </section>
+    <section id="Tutorial"class="tutorial">
+       <h1> Tutorial </h1>
+       <p> Want to know more about how to invest in stock market...</p>   
+       <div class="slider">
+  
+        <a href="#slide-1">1</a>
+        <a href="#slide-2">2</a>
+        <a href="#slide-3">3</a>
+        <a href="#slide-4">4</a>
+        <a href="#slide-5">5</a>
+      
+        <div class="slides">
+          <div id="slide-1">
+            <img src="{{ tutorials.items.0.snippet.thumbnails.high.url }}" width="300px" height="300px">
+          </div>
+          <div id="slide-2">
+            <img src="{{ tutorials.items.1.snippet.thumbnails.high.url }}" width="300px" height="300px">
+          </div>
+          <div id="slide-3">
+            <img src="{{ tutorials.items.0.snippet.thumbnails.high.url }}" width="300px" height="300px">
+          </div>
+          <div id="slide-4">
+            <img src="{{ tutorials.items.1.snippet.thumbnails.high.url }}" width="300px" height="300px">
+          </div>
+          <div id="slide-5">
+            <img src="{{ tutorials.items.0.snippet.thumbnails.high.url }}" width="300px" height="300px">
+          </div>
+        </div>
+      </div>
+    </section>
+    </section>  
+
+    <section id="About" class="about">
+       <h1> About </h1>
+       <p> This website helps you to get the prediction of opening prices and the closing prices of a particular stock you are interested in.</p>
+    </section>   
+
+    <section class="cta">
+       <h1> Want to know more about our website🤔🤔</h1>
+       <a href="" class="hero-btn">CONTACT US</a>
+    </section>   
+    
+
+    
+</body>
+</html>

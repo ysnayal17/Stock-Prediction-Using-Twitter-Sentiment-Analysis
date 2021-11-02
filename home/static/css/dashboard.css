@@ -1,0 +1,149 @@
+.main-data {
+    /* background-color: aqua; */
+    position: relative;
+    top: 0;
+    left: 0;
+    display: flex;
+    width: 100%;
+    height: 600px;
+    margin-top: 50px;
+}
+.left-part{
+    width: 30%;
+    margin: 10px 20px;
+    position: relative;
+    top: 0;
+    left: 0;
+}
+.right-part {
+    width: 70%;
+    position: relative;
+    margin: 10px 20px;
+}
+.top-part {
+    display: flex;
+    margin: 10px 30px 0;
+}
+.top-part > h4 {
+    margin: 20px 0 0 0 !important;
+}
+.bottom-part {
+    display: flex;
+    margin: 30px;
+}
+.bottom-part > h4 {
+    margin-right: 30px !important;
+}
+.today {
+    margin: 0 0 0 10px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    width: 60%;
+}
+.today > div > li, .bottom-part li{
+    /* display: inline; */
+    list-style-type: none;
+}
+h4 {
+    margin: 0;
+}
+.right-part > div > img {
+    position: absolute;
+    bottom: 0;
+    left: 10px;
+    width: 100%;
+    height: 75%;
+}
+#img3 {
+    text-align: center;
+    height: 100%;
+}
+#img1 {
+    position: absolute;
+    left: 2px;
+    bottom: 10px;
+    text-align: center;
+    width: 100%;
+}
+.news {
+    position: relative;
+    top: 120%;
+    left: 0;
+    width: 100%;
+    height: 500px;
+    /* background-color: aqua; */
+    margin-top: 50px;
+    display: flex;
+    text-align: center;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.twitter {
+    /* border: 2px solid black; */
+    width: 50%;
+    height: 80%;
+    overflow: scroll;
+    margin-top: 25px;
+}
+.newspart {
+    /* border: 2px solid black; */
+    width: 50%;
+    height: 80%;
+    overflow: scroll;
+    margin-top: 25px;
+}
+tr {
+    text-align: center;
+}
+tr:nth-child(even) {
+    background-color: grey;
+}
+table {
+    text-align: center;
+    width: 95%;
+    margin: auto;
+    line-height: 3;
+}
+.news > h2 {
+    position: absolute;
+    top: 20px;
+}
+.graph_ {
+    text-align: center;
+    padding: 3% 5%;
+    margin: 2% 0;
+}
+.btn-class {
+    position: relative;
+    left: 44%;
+    color: #07080a !important;
+}
+.btn-class:hover {
+    border: 1px solid #07080a !important;
+}
+.predtable {
+    background-color: #07080a;
+}
+.model-pred-graph {
+    padding: 3% 0;
+    height: 50%;
+    position: relative;
+    z-index: 2;
+}
+.model-pred-pie {
+    position: relative;
+    top: 46%;
+    left:0;
+}
+.footer {
+    padding: 5% 14%;
+    text-align: center;
+    position: relative;
+    top: 120%;
+    left: 0;
+    width: 100%;
+    height: 0 !important;
+    margin-top: 50px;
+    background-color: #07080a !important;
+}
